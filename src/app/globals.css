@@ -1,15 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F6F6F6;
+  --foreground: #222222;
+  --secondary: #333333;
+  --tertiary: #666666;
+  --footer: #F0F0F0;
+  --footer-text: #444444;
+  --link-color: #0056B3;
+  --button-bg: #111111;
+  --button-text: #FFFFFF;
+  --secondary-button-bg: #FFFFFF;
+  --secondary-button-text: #222222;
+  --secondary-button-border: #E0E0E0;
+  --secondary-button-hover: #F0F0F0;
+  --dot-color: #E0E0E0;
+  --card-border: #EEEEEE;
+  --divider: #EEEEEE;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-footer: var(--footer);
+  --color-footer-text: var(--footer-text);
+  --color-link: var(--link-color);
+  --font-sans: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +40,92 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(var(--dot-color) 2px, transparent 2px);
+  background-size: 20px 20px;
+  background-position: 0 0;
+}
+
+.section-divider {
+  border-top: 1px solid var(--divider);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@layer utilities {
+  .rounded-card {
+    border-radius: 8px;
+  }
+  
+  .rounded-button {
+    border-radius: 6px;
+  }
+  
+  .shadow-card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .hover-button {
+    transition: background-color 0.2s ease;
+  }
+  
+  .hover-button:hover {
+    background-color: var(--secondary-button-hover);
+  }
+  
+  .primary-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 10px 24px;
+    border-radius: 6px;
+    transition: opacity 0.2s ease;
+  }
+  
+  .primary-button:hover {
+    opacity: 0.9;
+  }
+  
+  .secondary-button {
+    background-color: var(--secondary-button-bg);
+    color: var(--secondary-button-text);
+    border: 1px solid var(--secondary-button-border);
+    padding: 12px 24px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .secondary-button:hover {
+    background-color: var(--secondary-button-hover);
+  }
+  
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  .section-padding {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  
+  @media (max-width: 768px) {
+    .section-padding {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+  }
+  
+  .container-padding {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 }
