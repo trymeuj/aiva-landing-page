@@ -4,24 +4,24 @@ import Image from 'next/image';
 const Header = () => {
   return (
     <header className="w-full bg-[#F6F6F6] sticky top-0 z-50">
-      <div className="max-w-content mx-auto px-container py-8 flex justify-between items-center">
+      <div className="max-w-[1200px] mx-auto px-[5%] py-5 flex justify-between items-center">
         <Link href="/" className="font-bold text-2xl">
-          <span className="text-foreground">Aiva</span>
+          <span className="text-[#222222]">Aiva</span>
         </Link>
         
-        <nav className="hidden md:flex space-x-10">
+        <nav className="hidden md:flex items-center space-x-10">
           {['Features', 'Use Cases', 'Blog'].map((item) => (
             <Link 
               key={item} 
               href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-              className="text-secondary hover:text-foreground transition-colors duration-200"
+              className="text-[#333333] hover:text-[#222222] transition-colors duration-200 py-2"
             >
               {item}
             </Link>
           ))}
           <Link 
             href="/enroll-now"
-            className="bg-buttonBg text-buttonText px-nav-button-padding-x py-nav-button-padding-y rounded-button primary-button"
+            className="bg-[#111111] text-white px-6 py-2.5 rounded-md hover:opacity-90 transition-opacity"
           >
             Enroll Now
           </Link>

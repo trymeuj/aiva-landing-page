@@ -12,7 +12,7 @@ export default {
         foreground: "#222222",
         secondary: "#333333",
         tertiary: "#666666",
-        footer: "#F0F0F0",
+        footer: "#E6E6E6",
         footerText: "#444444",
         linkColor: "#0056B3",
         buttonBg: "#111111",
