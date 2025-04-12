@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const BlogCard = ({ title, excerpt, image, link }) => {
   return (
-    <div className="bg-white rounded-card shadow-card border border-cardBorder overflow-hidden card-hover">
+    <div className="bg-white rounded-card shadow-card border border-cardBorder overflow-hidden card-hover h-full">
       <div className="relative h-52 w-full">
         <Image
           src={image}
@@ -53,8 +53,7 @@ const BlogSection = () => {
   ];
 
   return (
-    <section className="w-full py-section-mobile md:py-section">
-      <div className="section-divider mb-section"></div>
+    <section className="w-full py-section-mobile md:py-section bg-background">
       <div className="max-w-content mx-auto px-container">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-section-heading text-foreground">
           From the Blog

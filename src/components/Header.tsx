@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Header = () => {
   return (
-    <header className="w-full bg-background sticky top-0 z-50 backdrop-blur-sm">
+    <header className="w-full bg-[#F6F6F6] sticky top-0 z-50">
       <div className="max-w-content mx-auto px-container py-8 flex justify-between items-center">
         <Link href="/" className="font-bold text-2xl">
           <span className="text-foreground">Aiva</span>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(2);
@@ -26,7 +27,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="w-full dot-pattern pt-section-mobile md:pt-section pb-10">
+    <section className="w-full pt-section-mobile md:pt-section pb-10 bg-background">
       <div className="max-w-content mx-auto px-container text-center">
         {/* Hero Text */}
         <h1 className="text-4xl md:text-5xl lg:text-hero font-bold mb-8 leading-tight tracking-tight text-foreground">
@@ -39,12 +40,12 @@ const HeroSection = () => {
         
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-6 mb-20">
-          <button className="bg-buttonBg text-buttonText px-button-padding-x py-button-padding-y rounded-button primary-button font-medium">
+          <Link href="/book" className="bg-buttonBg text-buttonText px-button-padding-x py-button-padding-y rounded-button primary-button font-medium">
             Book
-          </button>
-          <button className="bg-secondaryButtonBg text-secondaryButtonText border border-secondaryButtonBorder px-button-padding-x py-button-padding-y rounded-button secondary-button font-medium">
+          </Link>
+          <Link href="/demo" className="bg-secondaryButtonBg text-secondaryButtonText border border-secondaryButtonBorder px-button-padding-x py-button-padding-y rounded-button secondary-button font-medium">
             Watch Demo
-          </button>
+          </Link>
         </div>
         
         {/* Carousel */}
