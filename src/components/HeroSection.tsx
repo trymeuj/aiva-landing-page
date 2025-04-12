@@ -27,21 +27,21 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="w-full pt-section-mobile md:pt-section pb-10 bg-background">
+    <section className="w-full pt-24 md:pt-32 pb-16 bg-background">
       <div className="max-w-content mx-auto px-container text-center">
         {/* Hero Text */}
-        <h1 className="text-4xl md:text-5xl lg:text-hero font-bold mb-8 leading-tight tracking-tight text-foreground">
-          We are to you what Jarvis is to Stark
+        <h1 className="text-5xl md:text-6xl lg:text-hero font-bold mb-8 leading-tight tracking-tight text-foreground">
+          Your Personal Jarvis. Just Ask.
         </h1>
         
-        <p className="text-lg text-tertiary max-w-2xl mx-auto mb-12">
-          An agent that is truly autonomous. Automate tasks across your work and life.
+        <p className="text-xl text-tertiary max-w-2xl mx-auto mb-14">
+          Truly autonomous. Jarvis works across your tools, so you don’t have to.
         </p>
         
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-6 mb-20">
-          <Link href="/book" className="bg-buttonBg text-buttonText px-button-padding-x py-button-padding-y rounded-button primary-button font-medium">
-            Book
+        <div className="flex flex-col sm:flex-row justify-center gap-6 mb-24">
+          <Link href="/get-your-jarvis" className="bg-buttonBg text-buttonText px-button-padding-x py-button-padding-y rounded-button primary-button font-medium">
+            Get Your Jarvis
           </Link>
           <Link href="/demo" className="bg-secondaryButtonBg text-secondaryButtonText border border-secondaryButtonBorder px-button-padding-x py-button-padding-y rounded-button secondary-button font-medium">
             Watch Demo

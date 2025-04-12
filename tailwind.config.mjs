@@ -6,6 +6,9 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      serif: ['Crimson Pro', 'Georgia', 'serif'],
+    },
     extend: {
       colors: {
         background: "#F6F6F6",
@@ -33,22 +36,19 @@ export default {
         'card': '0 4px 6px rgba(0, 0, 0, 0.05)',
         'cardHover': '0 6px 8px rgba(0, 0, 0, 0.08)',
       },
-      fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-      },
       fontSize: {
-        'hero': ['48px', '1.1'],
-        'hero-mobile': ['36px', '1.2'],
-        'card-heading': '22px',
+        'hero': ['56px', '1.1'],
+        'hero-mobile': ['40px', '1.2'],
+        'card-heading': '24px',
       },
       spacing: {
-        'section': '80px',
-        'section-mobile': '60px',
-        'section-heading': '40px',
+        'section': '120px',
+        'section-mobile': '80px',
+        'section-heading': '48px',
         'card-padding': '32px',
         'card-margin': '24px',
         'icon-margin': '16px',
-        'heading-margin': '16px',
+        'heading-margin': '20px',
         'button-padding-x': '24px',
         'button-padding-y': '12px',
         'nav-button-padding-x': '24px',

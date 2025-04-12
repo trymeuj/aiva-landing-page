@@ -38,14 +38,20 @@ const CollaborationIcon = () => (
 );
 
 // Feature Card Component
-const FeatureCard = ({ title, description, icon: Icon }) => {
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+const FeatureCard = ({ title, description, icon: Icon }: FeatureCardProps) => {
   return (
-    <div className="bg-white p-8 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-[#EEEEEE] transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_6px_8px_rgba(0,0,0,0.08)]">
-      <div className="mb-4">
-        <Icon style={{ width: '24px', height: '24px' }} />
+    <div className="bg-white p-7 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-[#EEEEEE] transition-all duration-300 hover:translate-y-[-3px] hover:shadow-[0_8px_12px_rgba(0,0,0,0.08)]">
+      <div className="mb-5">
+        <Icon style={{ width: '28px', height: '28px' }} />
       </div>
-      <h3 className="text-[22px] font-medium mb-4 text-[#333333]">{title}</h3>
-      <p className="text-[#666666]">{description}</p>
+      <h3 className="text-xl font-semibold mb-3 text-[#333333]">{title}</h3>
+      <p className="text-[#666666] text-base">{description}</p>
     </div>
   );
 };
@@ -54,34 +60,34 @@ const FeatureSection = () => {
   const features = [
     {
       title: "Multiple Agent Personalities",
-      description: "Create specialized agents for your work, personal life, and everything in between. Each one acts and speaks differently — like having a team, not just a bot.",
+      description: "Create specialized agents for your work, personal life, and everything in between. Be the Manager. They’re Your Team.",
       icon: MultipleAgentsIcon
     },
     {
-      title: "Truly Autonomous Agents",
-      description: "No rigid workflows. Just tell the agent what you need — it figures out the best plan and executes it on its own.",
+      title: "Humans or Agents ?",
+      description: "Truly Autonomous Agents. No rigid workflows. Just tell the agent what you need — it figures out the best plan and executes it on its own.",
       icon: AutonomousIcon
     },
     {
       title: "Cross-App Superpowers",
-      description: "Read your emails, schedule meetings, send texts, manage docs — all in one place, across all your tools and services.",
+      description: "Gmail. Docs. Calendar. ChatGPT. Excel. Whatsapp. Everything works through your agent.",
       icon: CrossAppIcon
     },
     {
       title: "Agents That Talk to Each Other",
-      description: "Agents collaborate behind the scenes. If tasks overlap or depend on each other, they coordinate — so nothing slips through the cracks.",
+      description: "Agents that work like teammates. They sync, collaborate, and run behind the scenes.",
       icon: CollaborationIcon
     }
   ];
 
   return (
-    <section className="w-full py-16 md:py-20 bg-[#F6F6F6]">
+    <section className="w-full py-24 md:py-28 bg-[#F6F6F6]">
       <div className="max-w-[1200px] mx-auto px-[5%]">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#222222]">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-14 text-[#222222]">
           Why this isn't just another AI tool
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
           ))}

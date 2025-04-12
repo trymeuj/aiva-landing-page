@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&display=swap');
 
 :root {
   --background: #F6F6F6;
@@ -24,14 +25,43 @@
   --color-footer: var(--footer);
   --color-footer-text: var(--footer-text);
   --color-link: var(--link-color);
-  --font-sans: var(--font-inter);
+  --font-serif: 'Crimson Pro', Georgia, serif;
 }
 
 body {
   background-color: #F6F6F6;
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   line-height: 1.6;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.25rem;
 }
 
 .section-divider {
