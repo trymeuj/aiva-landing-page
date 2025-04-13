@@ -24,8 +24,8 @@ const HeroSection = () => {
   // Media types for each slide (image, gif, video)
   const slides = [
     { id: 1, src: '/whatsapp-demo3.mp4', alt: 'WhatsApp Video Demo', type: 'video' },
-    { id: 2, src: '/carousal-2.jpg', alt: 'Aiva in action 1', type: 'image' },
-    { id: 3, src: '/carousel-1.jpg', alt: 'WhatsApp Automation Demo', type: 'image' },
+    { id: 2, src: '/gmail-demo.mp4', alt: 'Aiva in action 1', type: 'video' },
+    { id: 3, src: '/calendar-demo.mp4', alt: 'WhatsApp Automation Demo', type: 'video' },
     { id: 4, src: '/carousel-2.jpg', alt: 'Aiva in action 2', type: 'image' },
     { id: 5, src: '/carousel-3.jpg', alt: 'Aiva in action 3', type: 'image' },
   ];
