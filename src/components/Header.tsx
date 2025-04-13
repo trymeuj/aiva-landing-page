@@ -18,12 +18,19 @@ const Header = () => {
               {item}
             </Link>
           ))}
-          <Link 
-            href="/get-your-jarvis"
+          {/* Updated button with new Tally attributes */}
+          <button 
             className="bg-[#111111] text-white px-7 py-3 rounded-md hover:opacity-90 transition-opacity"
+            data-tally-open="3y7qQB" 
+            data-tally-layout="modal" 
+            data-tally-width="600" 
+            data-tally-hide-title="0" 
+            data-tally-emoji-text="👋" 
+            data-tally-emoji-animation="wave" 
+            data-tally-auto-close="3"
           >
             Get Your Jarvis
-          </Link>
+          </button>
         </nav>
         
         <button className="md:hidden">
@@ -38,4 +45,4 @@ const Header = () => {
   );
 };
 
-export default Header; 
+export default Header;
