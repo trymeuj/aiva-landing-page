@@ -1,30 +1,165 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Define service icons with their paths
+const serviceIcons = [
+  { name: 'WhatsApp', path: '/WhatsApp-logo.svg' },
+  { name: 'Gmail', path: '/Gmail_icon.svg' },
+  { name: 'Calendar', path: '/Google_Calendar_icon.svg' },
+  { name: 'WhatsApp', path: '/WhatsApp-logo.svg' }, // Repeating to fill 5 slots
+  { name: 'Gmail', path: '/Gmail_icon.svg' }, // Repeating to fill 5 slots
+];
+
 const HeroSection = () => {
-  const [activeIndex, setActiveIndex] = useState(2);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [rotationDirection, setRotationDirection] = useState(-1); // -1 for reverse, 1 for forward
+  const [autoRotate, setAutoRotate] = useState(true);
   const totalSlides = 5;
-
-  // Auto-slide functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % totalSlides);
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
-  // Example images/GIFs - replace with actual assets
+  const mediaRefs = useRef<(HTMLImageElement | HTMLVideoElement | null)[]>([]);
+  const fallbackTimer = useRef<NodeJS.Timeout | null>(null);
+  
+  // Media types for each slide (image, gif, video)
   const slides = [
-    { id: 1, src: '/carousel-1.jpg', alt: 'Aiva in action 1' },
-    { id: 2, src: '/carousel-2.jpg', alt: 'Aiva in action 2' },
-    { id: 3, src: '/carousel-3.jpg', alt: 'Aiva in action 3' },
-    { id: 4, src: '/carousel-4.jpg', alt: 'Aiva in action 4' },
-    { id: 5, src: '/carousel-5.jpg', alt: 'Aiva in action 5' },
+    { id: 1, src: '/whatsapp-demo3.mp4', alt: 'WhatsApp Video Demo', type: 'video' },
+    { id: 2, src: '/carousal-2.jpg', alt: 'Aiva in action 1', type: 'image' },
+    { id: 3, src: '/carousel-1.jpg', alt: 'WhatsApp Automation Demo', type: 'image' },
+    { id: 4, src: '/carousel-2.jpg', alt: 'Aiva in action 2', type: 'image' },
+    { id: 5, src: '/carousel-3.jpg', alt: 'Aiva in action 3', type: 'image' },
   ];
+
+  // Function to advance to next slide
+  const advanceSlide = () => {
+    if (!autoRotate) return;
+    
+    // Add 1 second delay before advancing
+    setTimeout(() => {
+      // Calculate next index based on rotation direction
+      if (rotationDirection === -1) {
+        setActiveIndex((current) => 
+          current === 0 ? totalSlides - 1 : current - 1
+        );
+      } else {
+        setActiveIndex((current) => 
+          (current + 1) % totalSlides
+        );
+      }
+    }, 1000); // 1 second delay after content completes
+  };
+
+  // Toggle rotation direction every full cycle
+  useEffect(() => {
+    if (activeIndex === 0) {
+      setRotationDirection(prev => prev * -1); // Toggle between 1 and -1
+    }
+  }, [activeIndex]);
+  
+  // Handle media playback and rotation
+  useEffect(() => {
+    // Clear any existing timers
+    if (fallbackTimer.current) {
+      clearTimeout(fallbackTimer.current);
+      fallbackTimer.current = null;
+    }
+    
+    const currentSlide = slides[activeIndex];
+    const mediaElement = mediaRefs.current[activeIndex];
+    
+    // For GIFs we need to handle them specially since they don't have natural onended events
+    if (currentSlide.type === 'gif' && mediaElement instanceof HTMLImageElement) {
+      // For GIFs, we can use a technique to reload the image to detect when it's fully loaded
+      // First get a fresh instance to force reload
+      const tempImg = document.createElement('img');
+      tempImg.src = currentSlide.src;
+      
+      // When loaded, we can estimate GIF duration from its properties or use a fallback
+      tempImg.onload = () => {
+        // Set a reasonable timer based on GIF size - this is an estimate
+        // For a better solution, you'd need to parse the GIF file to get actual duration
+        // Here we use a heuristic of 5-10 seconds for most GIFs
+        const estimatedDuration = 7000; // Adjust based on your specific GIFs
+        
+        fallbackTimer.current = setTimeout(() => {
+          advanceSlide();
+        }, estimatedDuration);
+      };
+      
+      // Fallback in case the load event doesn't fire
+      fallbackTimer.current = setTimeout(() => {
+        advanceSlide();
+      }, 8000);
+    } 
+    // For videos, we can use the natural ended event
+    else if (currentSlide.type === 'video' && mediaElement instanceof HTMLVideoElement) {
+      const handleVideoEnd = () => {
+        advanceSlide();
+      };
+      
+      mediaElement.addEventListener('ended', handleVideoEnd);
+      
+      // Start playing
+      mediaElement.play().catch(error => {
+        console.error('Error playing video:', error);
+        // Fallback if autoplay fails
+        fallbackTimer.current = setTimeout(() => {
+          advanceSlide();
+        }, 5000);
+      });
+      
+      return () => {
+        mediaElement.removeEventListener('ended', handleVideoEnd);
+      };
+    } 
+    // For static images, use a fixed duration
+    else {
+      fallbackTimer.current = setTimeout(() => {
+        advanceSlide();
+      }, 3000);
+    }
+    
+    return () => {
+      if (fallbackTimer.current) {
+        clearTimeout(fallbackTimer.current);
+      }
+    };
+  }, [activeIndex, autoRotate, rotationDirection]);
+
+  // Simple style to hide video controls
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      video::-webkit-media-controls-enclosure,
+      video::-webkit-media-controls,
+      video::-webkit-media-controls-panel,
+      video::-webkit-media-controls-overlay-play-button {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      
+      .video-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #fff;
+      }
+      
+      .video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: transparent;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   return (
     <section className="w-full pt-24 md:pt-32 pb-16 bg-background">
@@ -54,8 +189,8 @@ const HeroSection = () => {
         </h2>
         
         {/* Carousel */}
-        <div className="relative w-full max-w-4xl mx-auto h-[300px] md:h-[400px] overflow-hidden">
-          <div className="flex justify-center items-center h-full">
+        <div className="relative w-full max-w-4xl mx-auto h-[320px] md:h-[450px] overflow-hidden mb-0 bg-transparent">
+          <div className="flex justify-center items-center h-full bg-transparent">
             {slides.map((slide, index) => {
               // Calculate position relative to active slide
               const position = (index - activeIndex + totalSlides) % totalSlides;
@@ -65,7 +200,7 @@ const HeroSection = () => {
               let zIndex = 0;
               
               if (position === 0) {
-                size = "w-3/4 h-3/4 opacity-100";
+                size = "w-[70%] h-[70%] opacity-100";
                 zIndex = 30;
               } else if (position === 1 || position === totalSlides - 1) {
                 size = "w-1/2 h-1/2 opacity-70";
@@ -79,33 +214,66 @@ const HeroSection = () => {
               if (position === 0) {
                 translateX = 0;
               } else if (position === 1) {
-                translateX = 50;
+                translateX = 60;
               } else if (position === totalSlides - 1) {
-                translateX = -50;
+                translateX = -60;
               } else if (position < totalSlides / 2) {
-                translateX = 75;
+                translateX = 90;
               } else {
-                translateX = -75;
+                translateX = -90;
               }
               
               return (
                 <div
                   key={slide.id}
-                  className={`absolute rounded-card shadow-card cursor-pointer transition-all duration-500 ${size}`}
+                  className={`absolute rounded-xl overflow-hidden cursor-pointer transition-all duration-500 ${size}`}
                   style={{
                     transform: `translateX(${translateX}%)`,
-                    zIndex: zIndex,
+                    zIndex: zIndex
                   }}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => {
+                    // Clear any existing timers when manually changing slides
+                    if (fallbackTimer.current) {
+                      clearTimeout(fallbackTimer.current);
+                      fallbackTimer.current = null;
+                    }
+                    
+                    setActiveIndex(index);
+                    setAutoRotate(false); // Pause auto-rotation when user interacts
+                    setTimeout(() => setAutoRotate(true), 10000); // Resume after 10 seconds
+                  }}
                 >
-                  <div className="relative w-full h-full rounded-card overflow-hidden">
-                    <Image
-                      src={slide.src}
-                      alt={slide.alt}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      priority={position === 0}
-                    />
+                  <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                    {slide.type === 'video' ? (
+                      <div className="video-container w-full h-full flex items-center justify-center">
+                        <video
+                          className="rounded-xl"
+                          ref={(el) => { mediaRefs.current[index] = el; }}
+                          src={slide.src}
+                          muted
+                          playsInline
+                          autoPlay
+                          loop={false}
+                        />
+                      </div>
+                    ) : (
+                      <Image
+                        className="rounded-xl"
+                        ref={(el) => { 
+                          if (el) {
+                            mediaRefs.current[index] = el as unknown as HTMLImageElement;
+                          }
+                        }}
+                        src={slide.src}
+                        alt={slide.alt}
+                        fill
+                        style={{ 
+                          objectFit: 'cover',
+                          objectPosition: 'center'
+                        }}
+                        priority={position === 0}
+                      />
+                    )}
                   </div>
                 </div>
               );
@@ -113,17 +281,72 @@ const HeroSection = () => {
           </div>
         </div>
         
-        {/* Dots */}
-        <div className="flex justify-center space-x-2 mt-6">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              className={`w-2 h-2 rounded-full transition-all ${
-                index === activeIndex ? 'bg-foreground w-4' : 'bg-tertiary opacity-50'
-              }`}
-              onClick={() => setActiveIndex(index)}
-            />
-          ))}
+        {/* Service Logos instead of Dots - Lined up with spacing */}
+        <div className="relative flex justify-center items-center h-12 mt-1">
+          {slides.map((_, index) => {
+            const icon = serviceIcons[index];
+            
+            // Calculate position relative to active slide - similar to carousel logic
+            const position = (index - activeIndex + totalSlides) % totalSlides;
+            
+            // Determine size and horizontal position with more spacing
+            let size = "w-6 h-6";
+            let translateX = 0; // Using pixels instead of percentages for better control
+            let opacity = "opacity-30";
+            
+            if (position === 0) {
+              size = "w-14 h-14";
+              translateX = 0; // Center
+              opacity = "opacity-100";
+            } else if (position === 1) {
+              size = "w-8 h-8";
+              translateX = 65; // 65px to the right
+              opacity = "opacity-60";
+            } else if (position === totalSlides - 1) {
+              size = "w-8 h-8";
+              translateX = -65; // 65px to the left
+              opacity = "opacity-60";
+            } else if (position === 2) {
+              translateX = 130; // 130px to the right
+            } else if (position === totalSlides - 2) {
+              translateX = -130; // 130px to the left
+            } else if (position < totalSlides / 2) {
+              translateX = 190; // Further right
+            } else {
+              translateX = -190; // Further left
+            }
+            
+            return (
+              <button
+                key={index}
+                className={`absolute transition-all duration-300 ${opacity} hover:opacity-90`}
+                style={{
+                  transform: `translateX(${translateX}px)`,
+                }}
+                onClick={() => {
+                  // Clear any existing timers when manually changing slides
+                  if (fallbackTimer.current) {
+                    clearTimeout(fallbackTimer.current);
+                    fallbackTimer.current = null;
+                  }
+                  
+                  setActiveIndex(index);
+                  setAutoRotate(false); // Pause auto-rotation when user interacts
+                  setTimeout(() => setAutoRotate(true), 10000); // Resume after 10 seconds
+                }}
+                aria-label={`Go to ${icon.name} slide`}
+              >
+                <div className={`relative ${size} transition-all duration-300`}>
+                  <Image 
+                    src={icon.path} 
+                    alt={icon.name} 
+                    fill 
+                    style={{ objectFit: 'contain' }} 
+                  />
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>
