@@ -60,7 +60,7 @@ const FeatureSection = () => {
   const features = [
     {
       title: "Multiple Agent Personalities",
-      description: "Create specialized agents for your work, personal life, and everything in between. Be the Manager. They’re Your Team.",
+      description: "Create specialized agents for your work, personal life, and everything in between. Be the Manager. They're Your Team.",
       icon: MultipleAgentsIcon
     },
     {
@@ -81,7 +81,7 @@ const FeatureSection = () => {
   ];
 
   return (
-    <section className="w-full py-24 md:py-28 bg-[#F6F6F6]">
+    <section id="features" className="w-full py-24 md:py-28 bg-[#F6F6F6]">
       <div className="max-w-[1200px] mx-auto px-[5%]">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-14 text-[#222222]">
           Why this isn&rsquo;t just another AI tool
