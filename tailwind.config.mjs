@@ -60,7 +60,43 @@ export default {
       padding: {
         'container': '5%',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#333333',
+            a: {
+              color: '#0056B3',
+              '&:hover': {
+                color: '#004494',
+              },
+            },
+            h2: {
+              color: '#222222',
+              fontWeight: '700',
+              marginTop: '2em',
+              marginBottom: '0.5em',
+            },
+            h3: {
+              color: '#222222',
+              fontWeight: '600',
+            },
+            blockquote: {
+              borderLeftColor: '#0056B3',
+              color: '#444444',
+              fontStyle: 'italic',
+            },
+            code: {
+              color: '#444444',
+              backgroundColor: '#F6F6F6',
+              padding: '0.2em 0.4em',
+              borderRadius: '3px',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 } 
