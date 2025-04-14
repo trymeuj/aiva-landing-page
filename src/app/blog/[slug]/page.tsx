@@ -2,14 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { blogPosts, BlogPost } from '@/data/blogPosts';
+import { blogPosts } from '@/data/blogPosts';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Metadata } from 'next';
 
 type Props = {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
@@ -21,9 +20,8 @@ export function generateStaticParams() {
 }
 
 // Generate metadata for each blog post
-export async function generateMetadata({ params }: Props) {
-  const { slug } = params;
-  const post = blogPosts.find((post) => post.slug === slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = blogPosts.find((post) => post.slug === params.slug);
   
   if (!post) {
     return {
@@ -38,10 +36,9 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function BlogPostPage({ params, searchParams }: Props) {
-  const { slug } = params;
+export default function BlogPostPage({ params }: Props) {
   // Find the blog post with matching slug
-  const post = blogPosts.find((post) => post.slug === slug);
+  const post = blogPosts.find((post) => post.slug === params.slug);
   
   // If post not found, show 404 page
   if (!post) {
