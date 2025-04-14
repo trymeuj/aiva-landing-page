@@ -9,15 +9,15 @@ const serviceIcons = [
   { name: 'WhatsApp', path: '/WhatsApp-logo.svg' },
   { name: 'Gmail', path: '/Gmail_icon.svg' },
   { name: 'Calendar', path: '/Google_Calendar_icon.svg' },
-  { name: 'WhatsApp', path: '/WhatsApp-logo.svg' }, // Repeating to fill 5 slots
-  { name: 'Gmail', path: '/Gmail_icon.svg' }, // Repeating to fill 5 slots
+  { name: 'Meet', path: '/Google_Meet_icon.svg' }, 
+  // { name: 'Gmail', path: '/Gmail_icon.svg' }, 
 ];
 
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [rotationDirection, setRotationDirection] = useState(-1); // -1 for reverse, 1 for forward
   const [autoRotate, setAutoRotate] = useState(true);
-  const totalSlides = 5;
+  const totalSlides = 4;
   const mediaRefs = useRef<(HTMLImageElement | HTMLVideoElement | null)[]>([]);
   const fallbackTimer = useRef<NodeJS.Timeout | null>(null);
   
@@ -26,8 +26,8 @@ const HeroSection = () => {
     { id: 1, src: '/whatsapp-demo3.mp4', alt: 'WhatsApp Video Demo', type: 'video' },
     { id: 2, src: '/gmail-demo.mp4', alt: 'Aiva in action 1', type: 'video' },
     { id: 3, src: '/calendar-demo.mp4', alt: 'WhatsApp Automation Demo', type: 'video' },
-    { id: 4, src: '/carousel-2.jpg', alt: 'Aiva in action 2', type: 'image' },
-    { id: 5, src: '/carousel-3.jpg', alt: 'Aiva in action 3', type: 'image' },
+    { id: 4, src: '/Meet-demo.mp4', alt: 'Aiva in action 2', type: 'video' },
+    // { id: 5, src: '/carousel-3.jpg', alt: 'Aiva in action 3', type: 'image' },
   ];
 
   // Function to advance to next slide
