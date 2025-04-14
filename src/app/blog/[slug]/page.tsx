@@ -8,8 +8,8 @@ import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params?: Promise<{ slug: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 // Generate static params for all blog posts
@@ -21,7 +21,8 @@ export function generateStaticParams() {
 
 // Generate metadata for each blog post
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = blogPosts.find((post) => post.slug === params.slug);
+  const resolvedParams = await params;
+  const post = blogPosts.find((post) => post.slug === resolvedParams?.slug);
   
   if (!post) {
     return {
@@ -36,11 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function BlogPostPage({ params }: Props) {
-  // Find the blog post with matching slug
-  const post = blogPosts.find((post) => post.slug === params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const resolvedParams = await params;
+  const post = blogPosts.find((post) => post.slug === resolvedParams?.slug);
   
-  // If post not found, show 404 page
   if (!post) {
     notFound();
   }
