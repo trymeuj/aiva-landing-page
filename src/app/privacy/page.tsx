@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           <div className="max-w-[900px] mx-auto px-[5%]">
             <div className="bg-white rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] p-8 md:p-12">
               <div className="prose prose-lg max-w-none">
-                <h2>Last Updated: July 1, 2023</h2>
+                <h2>Last Updated: April 1, 2025</h2>
                 <p>At Aiva, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our AI assistant service. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access our service.</p>
 
                 <h2>Information We Collect</h2>
@@ -90,10 +90,10 @@ export default function PrivacyPage() {
                 <h2>Changes to This Privacy Policy</h2>
                 <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
 
-                <h2>Contact Us</h2>
+                {/* <h2>Contact Us</h2>
                 <p>If you have questions about this Privacy Policy, please contact us at:</p>
                 <p>Email: privacy@aiva.ai</p>
-                <p>Address: 123 AI Avenue, Tech City, CA 94000</p>
+                <p>Address: 123 AI Avenue, Tech City, CA 94000</p> */}
               </div>
             </div>
           </div>

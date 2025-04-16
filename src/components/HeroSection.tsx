@@ -166,11 +166,11 @@ const HeroSection = () => {
       <div className="max-w-content mx-auto px-container text-center">
         {/* Hero Text */}
         <h1 className="text-5xl md:text-6xl lg:text-hero font-bold mb-8 leading-tight tracking-tight text-foreground">
-          We are to you what Jarvis is to Iron Man.
+          AIVA is to you what Jarvis is to Iron Man.
         </h1>
         
         <p className="text-xl text-tertiary max-w-2xl mx-auto mb-14">
-          AI Agents at your service, Always. Automate Tasks across your work and life.
+          AI Agents at your service, Always. Automate Tasks across your Work and Life.
         </p>
           
         {/* CTA Buttons */}
@@ -194,7 +194,7 @@ const HeroSection = () => {
         
         {/* Use Cases Heading */}
         <h2 id="use-cases" className="text-4xl md:text-5xl font-bold text-center mb-12 text-[#222222]">
-          Use Cases
+          Watch AIVA in Action
         </h2>
         
         {/* Carousel */}
