@@ -81,10 +81,10 @@ const FeatureSection = () => {
   ];
 
   return (
-    <section id="features" className="w-full py-24 md:py-28 bg-[#F6F6F6]">
+    <section id="features" className="w-full py-16 md:py-20 bg-[#F6F6F6]">
       <div className="max-w-[1200px] mx-auto px-[5%]">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-14 text-[#222222]">
-          Why this isn&rsquo;t just another AI tool
+          Why AIVA is the best AI Agent for You
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

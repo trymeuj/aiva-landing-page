@@ -7,9 +7,9 @@ const Footer = () => {
       <div className="max-w-[1200px] mx-auto px-[5%] pt-[80px] pb-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
-            <h3 className="font-bold text-2xl mb-6 text-[#222222]">Aiva</h3>
+            <h3 className="font-bold text-2xl mb-6 text-[#222222]">AIVA</h3>
             <p className="text-[#444444] text-lg">
-              Your autonomous AI agent that connects to all your apps.
+              Your autonomous AI agent that connects to all your apps and completes your tasks.
             </p>
           </div>
           
@@ -66,7 +66,7 @@ const Footer = () => {
         
         <div className="mt-20 pt-10 border-t border-[#DDDDDD] flex flex-col md:flex-row justify-between items-center">
           <p className="text-base text-[#444444]">
-            © {new Date().getFullYear()} Aiva. All rights reserved.
+            © {new Date().getFullYear()} AIVA. All rights reserved.
           </p>
 {/*           
           <div className="flex space-x-6 mt-6 md:mt-0">

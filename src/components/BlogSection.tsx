@@ -47,10 +47,10 @@ const BlogSection = () => {
   const displayedPosts = blogPosts.slice(0, 4);
 
   return (
-    <section className="w-full py-24 md:py-28 bg-[#F6F6F6]">
+    <section className="w-full py-16 md:py-20 bg-[#F6F6F6]">
       <div className="max-w-[1200px] mx-auto px-[5%]">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-14">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#222222] mb-4 md:mb-0">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#222222] mb-4 md:mb-0 text-center">
             From the Blog
           </h2>
           <Link 

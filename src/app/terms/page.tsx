@@ -25,12 +25,12 @@ export default function TermsPage() {
           <div className="max-w-[900px] mx-auto px-[5%]">
             <div className="bg-white rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] p-8 md:p-12">
               <div className="prose prose-lg max-w-none">
-                <h2>Last Updated: July 1, 2023</h2>
+                <h2>Last Updated: April 1, 2025</h2>
                 <p>These Terms of Service ("Terms") govern your access to and use of Aiva's website, services, and applications (collectively, the "Service"). By accessing or using the Service, you agree to be bound by these Terms. If you do not agree to these Terms, do not access or use the Service.</p>
 
                 <h2>1. Use of Service</h2>
                 <h3>1.1 Eligibility</h3>
-                <p>You must be at least 18 years old to use the Service. By using the Service, you represent and warrant that you meet this requirement.</p>
+                <p>You must be at least 13 years old to use the Service. By using the Service, you represent and warrant that you meet this requirement.</p>
 
                 <h3>1.2 Account Registration</h3>
                 <p>To access certain features of the Service, you may be required to register for an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete.</p>
@@ -82,13 +82,13 @@ export default function TermsPage() {
                 <h2>8. Changes to Terms</h2>
                 <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
 
-                <h2>9. Governing Law</h2>
-                <p>These Terms shall be governed and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.</p>
+                {/* <h2>9. Governing Law</h2>
+                <p>These Terms shall be governed and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.</p> */}
 
-                <h2>10. Contact Us</h2>
+                {/* <h2>10. Contact Us</h2>
                 <p>If you have any questions about these Terms, please contact us at:</p>
                 <p>Email: legal@aiva.ai</p>
-                <p>Address: 123 AI Avenue, Tech City, CA 94000</p>
+                <p>Address: 123 AI Avenue, Tech City, CA 94000</p> */}
               </div>
             </div>
           </div>

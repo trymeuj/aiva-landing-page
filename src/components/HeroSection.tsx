@@ -15,7 +15,7 @@ const serviceIcons = [
 
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [rotationDirection, setRotationDirection] = useState(-1); // -1 for reverse, 1 for forward
+  const [rotationDirection, setRotationDirection] = useState(1); // Changed from -1 to 1 for forward rotation
   const [autoRotate, setAutoRotate] = useState(true);
   const totalSlides = 4;
   const mediaRefs = useRef<(HTMLImageElement | HTMLVideoElement | null)[]>([]);
@@ -34,10 +34,10 @@ const HeroSection = () => {
   const advanceSlide = () => {
     if (!autoRotate) return;
     
-    // Add 1 second delay before advancing
+    // Add 2 second delay before advancing
     setTimeout(() => {
       // Calculate next index based on rotation direction
-      if (rotationDirection === -1) {
+      if (rotationDirection === 1) {
         setActiveIndex((current) => 
           current === 0 ? totalSlides - 1 : current - 1
         );
@@ -46,7 +46,7 @@ const HeroSection = () => {
           (current + 1) % totalSlides
         );
       }
-    }, 1000); // 1 second delay after content completes
+    }, 2000); // 2 second delay after content completes
   };
 
   // Toggle rotation direction every full cycle
@@ -145,11 +145,18 @@ const HeroSection = () => {
         justify-content: center;
         overflow: hidden;
         background: #fff;
+        aspect-ratio: 2.35/1;
+        width: 100%;
+        position: relative;
       }
       
       .video-container video {
-        width: 100%;
+        width: auto;
         height: 100%;
+        max-width: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         object-fit: contain;
         background: transparent;
       }
@@ -166,11 +173,11 @@ const HeroSection = () => {
       <div className="max-w-content mx-auto px-container text-center">
         {/* Hero Text */}
         <h1 className="text-5xl md:text-6xl lg:text-hero font-bold mb-8 leading-tight tracking-tight text-foreground">
-          We are to you what Jarvis is to Iron Man.
+          AIVA is to you what Jarvis is to Iron Man.
         </h1>
         
         <p className="text-xl text-tertiary max-w-2xl mx-auto mb-14">
-          AI Agents at your service, Always. Automate Tasks across your work and life.
+          AI Agents at your service, Always. Automate Tasks across your Work and Life.
         </p>
           
         {/* CTA Buttons */}
@@ -194,7 +201,7 @@ const HeroSection = () => {
         
         {/* Use Cases Heading */}
         <h2 id="use-cases" className="text-4xl md:text-5xl font-bold text-center mb-12 text-[#222222]">
-          Use Cases
+          Watch AIVA in Action
         </h2>
         
         {/* Carousel */}
