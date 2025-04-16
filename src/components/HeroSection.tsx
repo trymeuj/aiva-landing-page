@@ -173,7 +173,7 @@ const HeroSection = () => {
       <div className="max-w-content mx-auto px-container text-center">
         {/* Hero Text */}
         <h1 className="text-5xl md:text-6xl lg:text-hero font-bold mb-8 leading-tight tracking-tight text-foreground">
-          AIVA is to you what Jarvis is to Iron Man.
+          AIVA is to You what Jarvis is to Iron Man.
         </h1>
         
         <p className="text-xl text-tertiary max-w-2xl mx-auto mb-14">
@@ -205,21 +205,21 @@ const HeroSection = () => {
         </h2>
         
         {/* Carousel */}
-        <div className="relative w-full max-w-4xl mx-auto h-[320px] md:h-[450px] overflow-hidden mb-0 bg-transparent">
+        <div className="relative w-full max-w-5xl mx-auto h-[350px] md:h-[500px] overflow-hidden mb-0 bg-transparent">
           <div className="flex justify-center items-center h-full bg-transparent">
             {slides.map((slide, index) => {
               // Calculate position relative to active slide
               const position = (index - activeIndex + totalSlides) % totalSlides;
               
               // Determine styling based on position from center
-              let size = "w-1/3 h-1/3 opacity-40";
+              let size = "w-1/2 h-1/2 opacity-40";
               let zIndex = 0;
               
               if (position === 0) {
-                size = "w-[70%] h-[70%] opacity-100";
+                size = "w-[85%] h-[85%] opacity-100";
                 zIndex = 30;
               } else if (position === 1 || position === totalSlides - 1) {
-                size = "w-1/2 h-1/2 opacity-70";
+                size = "w-2/3 h-2/3 opacity-70";
                 zIndex = 20;
               } else {
                 zIndex = 10;
