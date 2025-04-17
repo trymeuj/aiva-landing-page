@@ -15,7 +15,7 @@ const serviceIcons = [
 
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [rotationDirection, setRotationDirection] = useState(1); // Changed from -1 to 1 for forward rotation
+  const [rotationDirection, setRotationDirection] = useState(-1); // Changed to -1 for reverse rotation
   const [autoRotate, setAutoRotate] = useState(true);
   const totalSlides = 4;
   const mediaRefs = useRef<(HTMLImageElement | HTMLVideoElement | null)[]>([]);
@@ -37,13 +37,13 @@ const HeroSection = () => {
     // Add 2 second delay before advancing
     setTimeout(() => {
       // Calculate next index based on rotation direction
-      if (rotationDirection === 1) {
+      if (rotationDirection === -1) {
         setActiveIndex((current) => 
-          current === 0 ? totalSlides - 1 : current - 1
+          (current + 1) % totalSlides
         );
       } else {
         setActiveIndex((current) => 
-          (current + 1) % totalSlides
+          current === 0 ? totalSlides - 1 : current - 1
         );
       }
     }, 2000); // 2 second delay after content completes
@@ -51,8 +51,8 @@ const HeroSection = () => {
 
   // Toggle rotation direction every full cycle
   useEffect(() => {
-    if (activeIndex === 0) {
-      setRotationDirection(prev => prev * -1); // Toggle between 1 and -1
+    if (activeIndex === totalSlides - 1) {
+      setRotationDirection(prev => prev * -1); // Toggle between -1 and 1
     }
   }, [activeIndex]);
   
@@ -172,12 +172,12 @@ const HeroSection = () => {
     <section className="w-full pt-24 md:pt-32 pb-16 bg-background">
       <div className="max-w-content mx-auto px-container text-center">
         {/* Hero Text */}
-        <h1 className="text-5xl md:text-6xl lg:text-hero font-bold mb-8 leading-tight tracking-tight text-foreground">
-          AIVA is to you what Jarvis is to Iron Man.
+        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight text-foreground">
+          AIVA is to You what Jarvis is to Iron Man
         </h1>
         
-        <p className="text-xl text-tertiary max-w-2xl mx-auto mb-14">
-          AI Agents at your service, Always. Automate Tasks across your Work and Life.
+        <p className="text-xl md:text-2xl text-tertiary max-w-2xl mx-auto mb-14">
+          AI Agents at your service, Always. Automate Tasks across your Work and Life
         </p>
           
         {/* CTA Buttons */}
@@ -205,21 +205,21 @@ const HeroSection = () => {
         </h2>
         
         {/* Carousel */}
-        <div className="relative w-full max-w-4xl mx-auto h-[320px] md:h-[450px] overflow-hidden mb-0 bg-transparent">
+        <div className="relative w-full max-w-5xl mx-auto h-[350px] md:h-[500px] overflow-hidden mb-0 bg-transparent">
           <div className="flex justify-center items-center h-full bg-transparent">
             {slides.map((slide, index) => {
               // Calculate position relative to active slide
               const position = (index - activeIndex + totalSlides) % totalSlides;
               
               // Determine styling based on position from center
-              let size = "w-1/3 h-1/3 opacity-40";
+              let size = "w-1/2 h-1/2 opacity-40";
               let zIndex = 0;
               
               if (position === 0) {
-                size = "w-[70%] h-[70%] opacity-100";
+                size = "w-[85%] h-[85%] opacity-100";
                 zIndex = 30;
               } else if (position === 1 || position === totalSlides - 1) {
-                size = "w-1/2 h-1/2 opacity-70";
+                size = "w-2/3 h-2/3 opacity-70";
                 zIndex = 20;
               } else {
                 zIndex = 10;

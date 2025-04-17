@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 
@@ -16,9 +18,29 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-xl mb-6 text-[#222222]">Company</h4>
             <ul className="space-y-4">
-              <li><Link href="/about" className="text-[#444444] text-lg hover:text-[#222222] transition-colors">About</Link></li>
+              <li>
+                <button 
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="text-[#444444] text-lg hover:text-[#222222] transition-colors"
+                >
+                  About
+                </button>
+              </li>
               {/* <li><Link href="/careers" className="text-[#444444] text-lg hover:text-[#222222] transition-colors">Careers</Link></li> */}
-              <li><Link href="/contact" className="text-[#444444] text-lg hover:text-[#222222] transition-colors">Contact Us</Link></li>
+              <li>
+                <button 
+                  className="text-[#444444] text-lg hover:text-[#222222] transition-colors"
+                  data-tally-open="3y7qQB" 
+                  data-tally-layout="modal" 
+                  data-tally-width="600" 
+                  data-tally-hide-title="0" 
+                  data-tally-emoji-text="👋" 
+                  data-tally-emoji-animation="wave" 
+                  data-tally-auto-close="3"
+                >
+                  Contact Us
+                </button>
+              </li>
             </ul>
           </div>
           
