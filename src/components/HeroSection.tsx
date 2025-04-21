@@ -176,7 +176,7 @@ const HeroSection = () => {
           AIVA is to You what Jarvis is to Iron Man
         </h1>
         
-        <p className="text-xl md:text-2xl text-tertiary max-w-2xl mx-auto mb-14">
+        <p className="text-xl md:text-2xl text-tertiary max-w-2xl mx-auto mb-14 whitespace-nowrap">
           AI Agents at your service, Always. Automate Tasks across your Work and Life
         </p>
           
