@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 
 const Header = () => {
@@ -9,7 +11,7 @@ const Header = () => {
         </Link>
         
         <nav className="hidden md:flex items-center space-x-12">
-        <Link 
+          <Link 
             href="/#use-cases"
             className="text-[#333333] hover:text-[#222222] transition-colors duration-200 py-2 text-lg"
           >
@@ -21,14 +23,18 @@ const Header = () => {
           >
             Features
           </Link>
-          
           <Link 
             href="/blog"
             className="text-[#333333] hover:text-[#222222] transition-colors duration-200 py-2 text-lg"
           >
             Blog
           </Link>
-          {/* Updated button with new Tally attributes */}
+          <Link
+            href="/demo"
+            className="text-[#333333] hover:text-[#222222] transition-colors duration-200 py-2 text-lg"
+          >
+            Demo
+          </Link>
           <button 
             className="bg-[#111111] text-white px-7 py-3 rounded-md hover:opacity-90 transition-opacity"
             data-tally-open="3y7qQB" 
