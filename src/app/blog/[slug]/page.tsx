@@ -73,9 +73,11 @@ export default async function BlogPostPage({ params }: Props) {
                 <span className="mx-2">•</span>
                 <span>{post.author}</span>
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-[800px]">
-                {post.title}
-              </h1>
+              <Link href={`/blog/${post.slug}`} className="block">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-[800px] hover:text-[#0056B3] transition-colors">
+                  {post.title}
+                </h1>
+              </Link>
             </div>
           </div>
         </section>
