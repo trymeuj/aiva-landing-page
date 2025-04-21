@@ -15,27 +15,31 @@ interface BlogCardProps {
 const BlogCard = ({ title, excerpt, image, link, date, author }: BlogCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-[#EEEEEE] overflow-hidden transition-all duration-300 hover:translate-y-[-3px] hover:shadow-[0_8px_12px_rgba(0,0,0,0.08)]">
-      <div className="relative h-44 w-full">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          style={{ objectFit: 'cover' }}
-        />
-      </div>
+      <Link href={link} className="block">
+        <div className="relative h-44 w-full">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
+      </Link>
       <div className="p-7">
         <div className="flex items-center mb-3 text-sm text-[#666666]">
           <span>{date}</span>
           <span className="mx-2">•</span>
           <span>{author}</span>
         </div>
-        <h3 className="text-xl font-semibold mb-3 text-[#333333]">{title}</h3>
+        <Link href={link} className="block">
+          <h3 className="text-xl font-semibold mb-3 text-[#333333] hover:text-[#0056B3] transition-colors">{title}</h3>
+        </Link>
         <p className="text-[#666666] text-base mb-4 line-clamp-2">{excerpt}</p>
         <Link 
           href={link} 
-          className="text-[#0056B3] font-medium hover:opacity-80 transition-opacity"
+          className="text-[#0056B3] font-medium hover:opacity-80 transition-opacity inline-flex items-center"
         >
-          Read more →
+          Read more <span className="ml-1">→</span>
         </Link>
       </div>
     </div>
