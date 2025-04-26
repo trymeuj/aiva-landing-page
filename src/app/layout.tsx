@@ -5,6 +5,9 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "Aiva - Your AI Personal Assistant",
   description: "We are to you what Jarvis is to Stark - an autonomous AI agent that connects to all your apps",
+  icons: {
+    icon: '/aiva-logo.svg',
+  },
 };
 
 export default function RootLayout({
