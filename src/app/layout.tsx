@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Aiva - Your AI Personal Assistant",
@@ -25,6 +26,7 @@ export default function RootLayout({
       </head>
       <body className="font-serif antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
