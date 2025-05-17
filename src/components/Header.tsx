@@ -43,18 +43,12 @@ const Header = () => {
           >
             Demo
           </Link>
-          <button 
+          <Link 
+            href="/get-started"
             className="bg-[#111111] text-white px-7 py-3 rounded-md hover:opacity-90 transition-opacity"
-            data-tally-open="3y7qQB" 
-            data-tally-layout="modal" 
-            data-tally-width="600" 
-            data-tally-hide-title="0" 
-            data-tally-emoji-text="👋" 
-            data-tally-emoji-animation="wave" 
-            data-tally-auto-close="3"
           >
-            Get Your Jarvis
-          </button>
+            Get Started
+          </Link>
         </nav>
         
         <button 
@@ -116,19 +110,13 @@ const Header = () => {
             >
               Demo
             </Link>
-            <button 
+            <Link 
+              href="/get-started"
               className="bg-[#111111] text-white px-7 py-3 rounded-md hover:opacity-90 transition-opacity text-xl"
-              data-tally-open="3y7qQB" 
-              data-tally-layout="modal" 
-              data-tally-width="600" 
-              data-tally-hide-title="0" 
-              data-tally-emoji-text="👋" 
-              data-tally-emoji-animation="wave" 
-              data-tally-auto-close="3"
               onClick={() => setIsMenuOpen(false)}
             >
-              Get Your Jarvis
-            </button>
+              Get Started
+            </Link>
           </div>
         </div>
       </div>

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/get-started(/.*)?",
+      "destination": "https://aiva-v1-1.vercel.app/get-started$1"
+    }
+  ]
+} 
