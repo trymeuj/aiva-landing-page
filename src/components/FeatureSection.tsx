@@ -46,12 +46,12 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ title, description, icon: Icon }: FeatureCardProps) => {
   return (
-    <div className="bg-white p-7 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.05)] border border-[#EEEEEE] transition-all duration-300 hover:translate-y-[-3px] hover:shadow-[0_8px_12px_rgba(0,0,0,0.08)]">
+    <div className="bg-[#18181b] p-7 rounded-lg shadow-lg border border-[#232323] transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:z-10">
       <div className="mb-5">
-        <Icon style={{ width: '28px', height: '28px' }} />
+        <Icon style={{ width: '28px', height: '28px', color: '#fff' }} />
       </div>
-      <h3 className="text-xl font-semibold mb-3 text-[#333333]">{title}</h3>
-      <p className="text-[#666666] text-base">{description}</p>
+      <h3 className="text-xl font-semibold mb-3 text-white">{title}</h3>
+      <p className="text-white/80 text-base">{description}</p>
     </div>
   );
 };
@@ -81,9 +81,9 @@ const FeatureSection = () => {
   ];
 
   return (
-    <section id="features" className="w-full py-16 md:py-20 bg-[#F6F6F6]">
+    <section id="features" className="w-full py-16 md:py-20 bg-black">
       <div className="max-w-[1200px] mx-auto px-[5%]">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-14 text-[#222222]">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-14 text-white">
           Why AIVA is the best AI Agent for You
         </h2>
 

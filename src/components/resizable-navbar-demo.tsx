@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Navbar,
   NavBody,
@@ -13,30 +12,26 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
 
-const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+export default function NavbarDemo() {
   const navItems = [
     {
-      name: "Use Cases",
-      link: "/#use-cases",
-    },
-    {
       name: "Features",
-      link: "/#features",
+      link: "#features",
     },
     {
-      name: "Blog",
-      link: "/blog",
+      name: "Pricing",
+      link: "#pricing",
     },
     {
-      name: "Demo",
-      link: "/demo",
+      name: "Contact",
+      link: "#contact",
     },
   ];
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <div className="relative w-full bg-black">
+    <div className="relative w-full">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
@@ -44,7 +39,7 @@ const Header = () => {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Get Started</NavbarButton>
+            <NavbarButton variant="primary">Book a call</NavbarButton>
           </div>
         </NavBody>
 
@@ -52,12 +47,10 @@ const Header = () => {
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
-            <div className="flex items-center gap-4">
-              <MobileNavToggle
-                isOpen={isMobileMenuOpen}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              />
-            </div>
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
           </MobileNavHeader>
 
           <MobileNavMenu
@@ -87,14 +80,13 @@ const Header = () => {
                 variant="primary"
                 className="w-full"
               >
-                Get Started
+                Book a call
               </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
+      {/* Navbar */}
     </div>
   );
-};
-
-export default Header;
+} 

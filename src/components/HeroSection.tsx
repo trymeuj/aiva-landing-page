@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BackgroundBeams } from "@/components/ui/background-beams";
 
 // Define service icons with their paths
 const serviceIcons = [
@@ -169,21 +170,22 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="w-full pt-24 md:pt-32 pb-16 bg-background">
-      <div className="max-w-content mx-auto px-container text-center">
+    <section className="relative w-full pt-24 md:pt-32 pb-16 bg-black overflow-hidden">
+      <BackgroundBeams className="absolute inset-0 z-0" />
+      <div className="max-w-content mx-auto px-container text-center relative z-10">
         {/* Hero Text */}
-        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight text-foreground">
+        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight text-white">
           AIVA is to You what Jarvis is to Iron Man
         </h1>
         
-        <p className="text-xl md:text-2xl text-tertiary max-w-2xl mx-auto mb-14 whitespace-nowrap">
+        <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-14 whitespace-nowrap">
           AI Agents at your service, Always. Automate Tasks across your Work and Life
         </p>
           
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-6 mb-24">
-        <button 
-            className="bg-[#111111] text-white px-7 py-3 rounded-md hover:opacity-90 transition-opacity"
+          <button 
+            className="bg-white text-black px-7 py-3 rounded-md hover:opacity-90 transition-opacity font-medium"
             data-tally-open="3y7qQB" 
             data-tally-layout="modal" 
             data-tally-width="600" 
@@ -194,13 +196,13 @@ const HeroSection = () => {
           >
             Get Your Jarvis
           </button>
-          <Link href="/demo" className="bg-secondaryButtonBg text-secondaryButtonText border border-secondaryButtonBorder px-button-padding-x py-button-padding-y rounded-button secondary-button font-medium">
+          <Link href="/demo" className="bg-neutral-800 text-white border border-neutral-700 px-7 py-3 rounded-md hover:opacity-90 transition-opacity font-medium">
             Watch Demo
           </Link>
         </div>
         
         {/* Use Cases Heading */}
-        <h2 id="use-cases" className="text-4xl md:text-5xl font-bold text-center mb-12 text-[#222222]">
+        <h2 id="use-cases" className="text-4xl md:text-5xl font-bold text-center mb-12 text-white">
           Watch AIVA in Action
         </h2>
         
