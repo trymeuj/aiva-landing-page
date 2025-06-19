@@ -151,10 +151,10 @@ const MemorySection: React.FC = () => {
                 whileHover={{ scale: 1.12, boxShadow: '0 0 48px 8px rgba(35,97,235,0.35)' }}
               >
                 <div className="text-xs sm:text-sm text-foreground/80 mb-2">
-                  <strong>New Manager:</strong> "What's the status on the Johnson project?"
+                  <strong>New Manager:</strong> &quot;What&apos;s the status on the Johnson project?&quot;
                 </div>
                 <div className="text-xs sm:text-sm text-primary">
-                  <strong>AI Intern:</strong> "Here's the complete history and current status..."
+                  <strong>AI Intern:</strong> &quot;Here&apos;s the complete history and current status...&quot;
                 </div>
               </motion.div>
             </div>

@@ -83,7 +83,7 @@ const WhatAreAIInternsSection: React.FC = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 w-full max-w-4xl justify-center items-center">
-            {cards.map((card, idx) => (
+            {cards.map((card) => (
               <RevealCard key={card.shortText} {...card} />
             ))}
           </div>

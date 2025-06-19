@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Loader2, Clock, Plus } from 'lucide-react';
+import { motion } from 'framer-motion';
+
 import styles from './CreateAIInternSection.module.css';
 
 // Typewriter animation component
@@ -32,7 +32,7 @@ const panels = [
     subtext: (
       <>
         Just like hiring someone for a job, you tell us what this intern is for.<br />
-        Could be "Marketing Intern", "Invoice Assistant", or "Sales Rep".
+        Could be &quot;Marketing Intern&quot;, &quot;Invoice Assistant&quot;, or &quot;Sales Rep&quot;.
       </>
     ),
     note: 'The agent will specialize in this role, learn over time, and own that function.',
@@ -44,7 +44,7 @@ const panels = [
         </div>
         <div className={styles.inputLabel}>Any custom instructions?</div>
         <div className={styles.typewriter}>
-          <Typewriter text={`I store my prospect data in a sheet called "Prospects". I reference this to manage my sales pipeline.`} speed={16} />
+          <Typewriter text={`I store my prospect data in a sheet called &quot;Prospects&quot;. I reference this to manage my sales pipeline.`} speed={16} />
         </div>
       </>
     ),
@@ -77,7 +77,7 @@ const panels = [
     subtext: (
       <>
         Your AI Intern is ready. Just talk to it.<br />
-        "Send weekly report to my email" or "Update today's leads in the CRM"<br />
+        &quot;Send weekly report to my email&quot; or &quot;Update today&apos;s leads in the CRM&quot;<br />
         No coding. No forms. It listens, executes, and remembers.
       </>
     ),

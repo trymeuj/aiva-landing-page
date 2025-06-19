@@ -80,7 +80,7 @@ const HeroSection: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              You've hired{' '}
+              You&apos;ve hired{' '}
               <span className="text-primary glow-text">humans</span>{' '}before.
             </motion.h1>
 

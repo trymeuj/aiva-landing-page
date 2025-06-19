@@ -44,11 +44,11 @@ const FinalCTASection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            The future of work isn't{' '}
+            The future of work isn&apos;t{' '}
             <span className="text-foreground/50">more humans</span> —
             <br className="hidden sm:block" />
             <span className="sm:hidden"> </span>
-            It's <span className="text-primary glow-text">smarter teammates</span>.
+            It&apos;s <span className="text-primary glow-text">smarter teammates</span>.
           </motion.h2>
 
           <motion.p

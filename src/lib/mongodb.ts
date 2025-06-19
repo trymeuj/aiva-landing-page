@@ -6,15 +6,13 @@ if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable');
 }
 
-// Global cache for the mongoose connection
-declare global {
-  var mongoose: any;
-}
+// Use 'const' for cached and type global as Record<string, unknown>
+const globalWithCache = global as unknown as Record<string, unknown>;
+const cached: { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null } =
+  (globalWithCache._mongooseCache as { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null }) || { conn: null, promise: null };
 
-let cached = global.mongoose;
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+if (!globalWithCache._mongooseCache) {
+  globalWithCache._mongooseCache = cached;
 }
 
 async function connectDB() {
@@ -26,10 +24,7 @@ async function connectDB() {
     const opts = {
       bufferCommands: false,
     };
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
-    });
+    cached.promise = mongoose.connect(MONGODB_URI, opts);
   }
 
   try {

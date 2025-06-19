@@ -4,7 +4,6 @@ import { MessageSquare, CheckCircle, Settings, Zap, User } from 'lucide-react';
 
 const ChatDelegationSection: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [showTools, setShowTools] = useState(false);
 
   const conversation = [
     { type: 'user', text: 'We need to improve our customer response time' },
@@ -12,7 +11,7 @@ const ChatDelegationSection: React.FC = () => {
     { type: 'ai', text: 'I found we can automate initial responses and route urgent tickets faster.' },
     { type: 'ai', text: 'Should I set up automated responses for common questions and create priority routing?' },
     { type: 'user', text: 'Yes, that sounds perfect' },
-    { type: 'ai', text: 'Great! I\'ll implement this solution right away.' }
+    { type: 'ai', text: 'Great! I&apos;ll implement this solution right away.' }
   ];
 
   const tools = [
@@ -24,15 +23,11 @@ const ChatDelegationSection: React.FC = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (currentStep < conversation.length - 1) {
-        setCurrentStep(prev => prev + 1);
-      } else {
-        setShowTools(true);
-      }
-    }, 2500);
+      setCurrentStep((prev) => (prev + 1) % conversation.length);
+    }, 3000);
 
     return () => clearInterval(timer);
-  }, [currentStep]);
+  }, [conversation.length]);
 
   return (
     <section className="py-16 sm:py-24 relative">
@@ -45,7 +40,7 @@ const ChatDelegationSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-sora mb-4 sm:mb-6 px-2">
-            You don't give teammates a{' '}
+            You don&apos;t give teammates a{' '}
             <span className="text-foreground/50 line-through">checklist</span>.
           </h2>
           <p className="text-lg sm:text-xl lg:text-2xl text-foreground/80 max-w-3xl mx-auto px-2">
@@ -133,28 +128,28 @@ const ChatDelegationSection: React.FC = () => {
               <motion.div
                 key={index}
                 className={`flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 rounded-xl border transition-all duration-500 ${
-                  showTools && index <= currentStep - 4
+                  index <= currentStep - 4
                     ? 'bg-primary/10 border-primary/30'
                     : 'bg-card border-border opacity-50'
                 }`}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ 
-                  opacity: showTools && index <= currentStep - 4 ? 1 : 0.5,
+                  opacity: index <= currentStep - 4 ? 1 : 0.5,
                   x: 0,
-                  scale: showTools && index === currentStep - 4 ? 1.05 : 1
+                  scale: index === currentStep - 4 ? 1.05 : 1
                 }}
-                transition={{ delay: showTools ? index * 0.3 : 0 }}
+                transition={{ delay: index * 0.3 }}
               >
                 <motion.div
                   className={`p-2 rounded-full ${
-                    showTools && index <= currentStep - 4
+                    index <= currentStep - 4
                       ? 'bg-primary/20 text-primary'
                       : 'bg-foreground/10 text-foreground/50'
                   }`}
                   animate={{
-                    rotate: showTools && index === currentStep - 4 ? [0, 360] : 0,
+                    rotate: index === currentStep - 4 ? [0, 360] : 0,
                   }}
-                  transition={{ duration: 1, repeat: showTools && index === currentStep - 4 ? Infinity : 0 }}
+                  transition={{ duration: 1, repeat: index === currentStep - 4 ? Infinity : 0 }}
                 >
                   <tool.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.div>
@@ -164,7 +159,7 @@ const ChatDelegationSection: React.FC = () => {
                   <div className="text-xs sm:text-sm text-foreground/60 capitalize">{tool.status}</div>
                 </div>
 
-                {showTools && index <= currentStep - 4 && (
+                {index <= currentStep - 4 && (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -176,7 +171,7 @@ const ChatDelegationSection: React.FC = () => {
               </motion.div>
             ))}
 
-            {showTools && (
+            {currentStep >= 4 && (
               <motion.div
                 className="mt-6 sm:mt-8 p-3 sm:p-4 bg-green-500/10 border border-green-500/30 rounded-xl"
                 initial={{ opacity: 0, y: 20 }}

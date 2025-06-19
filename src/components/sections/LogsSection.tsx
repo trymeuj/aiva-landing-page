@@ -93,7 +93,7 @@ const LogsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-sora mb-4 sm:mb-6 px-2">
-            See everything they've done.{' '}
+            See everything they&apos;ve done.{' '}
             <span className="text-primary glow-text">Ask them why</span>.
           </h2>
           <p className="text-lg sm:text-xl lg:text-2xl text-foreground/80 max-w-3xl mx-auto px-2">

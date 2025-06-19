@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Database, Calendar, CheckCircle } from 'lucide-react';
 
@@ -6,13 +6,13 @@ const AssignTasksSection: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [typedText, setTypedText] = useState('');
 
-  const conversation = [
+  const conversation = useMemo(() => [
     { type: 'user', text: 'Can you set up weekly reports for our sales data?' },
-    { type: 'ai', text: 'Got it. I\'ll create a weekly sales report that pulls from your CRM...' },
+    { type: 'ai', text: 'Got it. I&apos;ll create a weekly sales report that pulls from your CRM...' },
     { type: 'ai', text: 'Setting up database connection...' },
     { type: 'ai', text: 'Scheduling weekly automation...' },
     { type: 'ai', text: '✅ Done! Weekly sales reports will be sent every Monday at 9 AM.' }
-  ];
+  ], []);
 
   const taskIcons = [
     { icon: MessageSquare, label: 'Understanding' },
@@ -27,7 +27,7 @@ const AssignTasksSection: React.FC = () => {
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [conversation.length]);
 
   useEffect(() => {
     const currentMessage = conversation[currentStep];
@@ -44,7 +44,7 @@ const AssignTasksSection: React.FC = () => {
     }, 50);
 
     return () => clearInterval(typeTimer);
-  }, [currentStep]);
+  }, [currentStep, conversation]);
 
   return (
     <section className="py-24 relative">
@@ -57,11 +57,11 @@ const AssignTasksSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl lg:text-6xl font-bold font-sora mb-6">
-            Assigning a task doesn't mean{' '}
+            Assigning a task doesn&apos;t mean{' '}
             <span className="text-primary glow-text">handholding</span>.
           </h2>
           <p className="text-xl lg:text-2xl text-foreground/80 max-w-3xl mx-auto">
-            These interns learn from what you say — and do what's needed.
+            These interns learn from what you say — and do what&apos;s needed.
           </p>
         </motion.div>
 

@@ -6,9 +6,12 @@ import { ArrowLeft, Users, Mail, Calendar } from "lucide-react";
 
 interface WaitlistEntry {
   _id: string;
-  name: string;
   email: string;
+  name: string;
+  company: string;
+  role: string;
   createdAt: string;
+  updatedAt: string;
 }
 
 interface WaitlistResponse {
@@ -23,27 +26,19 @@ interface WaitlistResponse {
 
 export default function AdminWaitlistPage() {
   const [waitlistData, setWaitlistData] = useState<WaitlistResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const fetchWaitlistData = async (page: number = 1) => {
+  const fetchWaitlistData = async (page: number) => {
     try {
-      setLoading(true);
-      const response = await fetch(`/api/waitlist?page=${page}&limit=20`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch waitlist data');
+      const response = await fetch(`/api/waitlist?page=${page}`);
+      const result: { data: WaitlistEntry[]; pagination: { current: number; total: number; count: number; totalEntries: number } } = await response.json();
+      setWaitlistData(result);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error fetching waitlist:', error.message);
+      } else {
+        console.error('Error fetching waitlist:', error);
       }
-
-      const data = await response.json();
-      setWaitlistData(data);
-      setError(null);
-    } catch (err: any) {
-      setError(err.message || 'Failed to load waitlist data');
-      console.error('Error fetching waitlist data:', err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -82,6 +77,24 @@ export default function AdminWaitlistPage() {
     a.download = `aiva-waitlist-${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
     window.URL.revokeObjectURL(url);
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(`/api/waitlist?id=${id}`, {
+        method: 'DELETE',
+      });
+      const result: { success: boolean } = await response.json();
+      if (result.success) {
+        fetchWaitlistData(currentPage);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error deleting entry:', error.message);
+      } else {
+        console.error('Error deleting entry:', error);
+      }
+    }
   };
 
   return (
@@ -155,22 +168,7 @@ export default function AdminWaitlistPage() {
 
         {/* Main Content */}
         <div className="bg-gradient-to-br from-gray-900/90 via-gray-800/90 to-blue-900/30 backdrop-blur-xl border border-gray-700/50 rounded-2xl overflow-hidden">
-          {loading ? (
-            <div className="p-8 text-center">
-              <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-300">Loading waitlist data...</p>
-            </div>
-          ) : error ? (
-            <div className="p-8 text-center">
-              <p className="text-red-400 mb-4">{error}</p>
-              <button
-                onClick={() => fetchWaitlistData(currentPage)}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
-              >
-                Retry
-              </button>
-            </div>
-          ) : waitlistData && waitlistData.data.length > 0 ? (
+          {waitlistData && waitlistData.data.length > 0 ? (
             <>
               {/* Table */}
               <div className="overflow-x-auto">
@@ -180,14 +178,23 @@ export default function AdminWaitlistPage() {
                       <th className="px-6 py-4 text-left text-sm font-medium text-gray-300">Name/Company</th>
                       <th className="px-6 py-4 text-left text-sm font-medium text-gray-300">Email</th>
                       <th className="px-6 py-4 text-left text-sm font-medium text-gray-300">Date Joined</th>
+                      <th className="px-6 py-4 text-right text-sm font-medium text-gray-300">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-700/50">
-                    {waitlistData.data.map((entry, index) => (
+                    {waitlistData.data.map((entry) => (
                       <tr key={entry._id} className="hover:bg-gray-800/30 transition-colors">
                         <td className="px-6 py-4 text-white">{entry.name}</td>
                         <td className="px-6 py-4 text-gray-300">{entry.email}</td>
                         <td className="px-6 py-4 text-gray-400">{formatDate(entry.createdAt)}</td>
+                        <td className="px-6 py-4 text-right">
+                          <button
+                            onClick={() => handleDelete(entry._id)}
+                            className="text-red-400 hover:text-red-300 transition-colors"
+                          >
+                            Delete
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

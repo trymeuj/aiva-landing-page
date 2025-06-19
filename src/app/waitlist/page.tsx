@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Check } from "lucide-react";
 import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
 
 export default function WaitlistPage() {
   const [formData, setFormData] = useState({
@@ -60,10 +59,10 @@ export default function WaitlistPage() {
               <Check className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-white mb-4">
-              You're on the list!
+              You&apos;re on the list!
             </h1>
             <p className="text-gray-300 mb-8">
-              Thank you for joining our waitlist. You'll be notified as soon as AIVA is ready for you.
+              Thank you for joining our waitlist. You&apos;ll be notified as soon as AIVA is ready for you.
             </p>
             <Link
               href="/"
