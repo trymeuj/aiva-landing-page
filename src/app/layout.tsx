@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Script from "next/script";
-import { Analytics } from "@vercel/analytics/react";
+import AnimatedNavbar from "@/components/ui/AnimatedNavbar";
 
 export const metadata: Metadata = {
-  title: "Aiva - Your AI Personal Assistant",
-  description: "We are to you what Jarvis is to Stark - an autonomous AI agent that connects to all your apps",
+  title: "AI Interns - Meet Your New Teammates",
+  description: "Build your AI team today and experience the difference of teammates who never forget, never leave, and always deliver.",
   icons: {
     icon: '/aiva-logo.svg',
   },
@@ -19,14 +18,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>AI Interns - Meet Your New Teammates</title>
+        <link rel="icon" href="/aiva-logo.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <Script src="https://tally.so/widgets/embed.js" strategy="afterInteractive" />
       </head>
-      <body className="font-serif antialiased">
+      <body className="antialiased">
+        <AnimatedNavbar />
         {children}
-        <Analytics />
       </body>
     </html>
   );
