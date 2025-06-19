@@ -1,16 +1,7 @@
-import type { NextConfig } from 'next';
-import { NextConfigComplete } from 'next/dist/server/config-shared';
+import type { NextConfig } from "next";
 
-const nextConfig: NextConfig | NextConfigComplete = {
-  async redirects() {
-    return [
-      {
-        source: '/get-started',
-        destination: 'https://app.aiva.business',
-        permanent: false,
-      },
-    ];
-  },
+const nextConfig: NextConfig = {
+  /* config options here */
 };
 
 export default nextConfig;

@@ -1,35 +1,35 @@
 {
-  "name": "aiva_landing_page",
+  "name": "newlandingpage",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --no-lint",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@tabler/icons-react": "^3.34.0",
-    "@vercel/analytics": "^1.5.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.513.0",
-    "motion": "^12.16.0",
-    "next": "15.3.0",
+    "framer-motion": "^12.18.1",
+    "lucide-react": "^0.516.0",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.0",
+    "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.0"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.3.0",
-    "gh-pages": "^6.3.0",
+    "eslint-config-next": "15.3.3",
     "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.4",
     "typescript": "^5"
   }
 }
